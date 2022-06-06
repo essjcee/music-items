@@ -1,5 +1,6 @@
 function getItems() {
-	const url = "http://jcdemoopenshift1.conygre.com:8081/items";
+	//const url = "http://jcdemoopenshift1.conygre.com:8081/items";
+	const url = "/items";
 	fetch(url)//promise object to return data from Rest API
 		.then(response => { return response.json(); }) //resolve , data from resolve is passed to next then
 		.then(items => {
@@ -27,7 +28,8 @@ function addItem() {
 		artist_group: document.getElementById('artist_group').value,
 		genre: document.getElementById('genre').value
 	};
-	const url = "http://jcdemoopenshift1.conygre.com:8081/items";
+	//const url = "http://jcdemoopenshift1.conygre.com:8081/items";
+	const url = "/items";
 	fetch(url, {
 		method: 'POST',
 		headers: {
@@ -43,7 +45,8 @@ function addItem() {
 }
 
 function populateInputs(id) {
-	const url = `http://jcdemoopenshift1.conygre.com:8081/items/${id}`;
+	//const url = `http://jcdemoopenshift1.conygre.com:8081/items/${id}`;
+	const url = `/items/${id}`;
 	fetch(url)
 		.then(response => { return response.json(); })
 		.then(item => {
@@ -64,7 +67,9 @@ function saveItem() {
 		genre: document.getElementById('genre').value
 	};
 	const id = document.getElementById('id').innerText;
-	fetch(`http://jcdemoopenshift1.conygre.com:8081/items/${id}`, {
+	const url = `/items/${id}`;
+	//const url = `http://jcdemoopenshift1.conygre.com:8081/items/${id}`;
+	fetch(url, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json'
@@ -83,8 +88,10 @@ function saveItem() {
 
 function deleteItem(id) {
 	const choice = confirm(`Do you want to delete the music item with id ${id}?`);
+	const url = `/items/${id}`;
+    //const url = `http://jcdemoopenshift1.conygre.com:8081/items/${id}`;
 	if (choice == true) {
-		fetch(`http://jcdemoopenshift1.conygre.com:8081/items/${id}`, {
+		fetch(url, {
 			method: 'DELETE'
 		}).then((response) => {
 			alert(`The music item with id ${id} has been deleted`);
