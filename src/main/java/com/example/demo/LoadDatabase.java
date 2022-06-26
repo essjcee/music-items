@@ -17,6 +17,8 @@ class LoadDatabase {
         return args -> {
             log.info("Preloading " + repository.save(new MusicItem("Imagine", "John Lennon", "Rock")));
             log.info("Preloading " + repository.save(new MusicItem("Ghost Town", "The Specials", "Ska")));
+            log.info("Preloading " + repository.save(new MusicItem("Let There Be Rock", "ACDC", "Hard Rock")));
+            log.info("Preloading " + repository.save(new MusicItem("Stairway to Heaven", "Led Zeppelin", "Heavy Metal")));
         };
     }
 }
