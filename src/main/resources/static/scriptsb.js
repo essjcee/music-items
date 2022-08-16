@@ -6,7 +6,7 @@ function getItems() {
 		.then(function(items) {
 			if (items.length > 0) {
 				var temp = "";
-				items.forEach((itemData) => {
+				items.forEach(function (itemData) {
 					temp += "<tr>";
 					temp += "<td>" + itemData.id + "</td>";
 					temp += "<td>" + itemData.name + "</td>";
