@@ -3,7 +3,7 @@ function getItems() {
 	const url = "/items";
 	fetch(url)//promise object to return data from Rest API
 		.then(function(response) { return response.json(); }) //resolve , data from resolve is passed to next then
-		.then(items => {
+		.then(function(items) {
 			if (items.length > 0) {
 				var temp = "";
 				items.forEach((itemData) => {
@@ -36,7 +36,7 @@ function addItem() {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(data)
-	}).then((response) => {
+	}).then(function(){
 		document.getElementById('name').value = "";
 		document.getElementById('artist_group').value = "";
 		document.getElementById('genre').value = "";
@@ -49,7 +49,7 @@ function populateInputs(id) {
 	const url = `/items/${id}`;
 	fetch(url)
 		.then(function(response){ return response.json(); })
-		.then(item => {
+		.then(function(item){
 			document.getElementById('id').innerText = item.id;
 			document.getElementById('name').value = item.name;
 			document.getElementById('artist_group').value = item.artist_group;
@@ -75,7 +75,7 @@ function saveItem() {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(item)
-	}).then( function(response){
+	}).then( function(){
 		document.getElementById('id').innerText = "";
 		document.getElementById('name').value = "";
 		document.getElementById('artist_group').value = "";
@@ -93,7 +93,7 @@ function deleteItem(id) {
 	if (choice == true) {
 		fetch(url, {
 			method: 'DELETE'
-		}).then((response) => {
+		}).then(function(response){
 			alert(`The music item with id ${id} has been deleted`);
 			getItems();
 		});
