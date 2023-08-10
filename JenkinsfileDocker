@@ -11,16 +11,16 @@ pipeline {
 
     stage('Check Container Status and Stop') {
       steps {
-        sh docker stop musicapp || echo 'App not running'
-        sh docker container rm musicapp || echo 'No container to remove'
-        sh docker image rm music/app:latest || echo 'No image to remove'
+        sh "docker stop musicapp || echo 'App not running'"
+        sh "docker container rm musicapp || echo 'No container to remove'"
+        sh "docker image rm music/app:latest || echo 'No image to remove'"
       }
     }
     stage('Build and run a new Container') {
       steps {
-        sh ./mvnw package
-        sh docker build -t music/app .
-        sh docker run -d -p 8081:8080 --name musicapp music/app
+        sh './mvnw package'
+        sh 'docker build -t music/app .'
+        sh 'docker run -d -p 8081:8080 --name musicapp music/app'
       }
     }
   }
